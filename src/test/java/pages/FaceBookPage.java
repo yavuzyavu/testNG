@@ -22,8 +22,10 @@ public class FaceBookPage {
     public WebElement login;
 
     @FindBy(xpath = "//*[@class='_9ay7']")
-    public WebElement girisYapilmadi;
+    public WebElement girisYapildi;
 
+    @FindBy(xpath = "//*[text()='Try again please']")
+    public WebElement girisYapilmadi;
 
 
 }

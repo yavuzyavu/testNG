@@ -3,11 +3,15 @@ package utilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
 
 public class Driver {
 
+    private Driver(){
+
+    }
     static WebDriver driver;
     /*
     testlerimizi calistirdiğimizda her seferinde yeni driver olusturduğu icin her test methodu icin yeni bir
@@ -19,8 +23,25 @@ public class Driver {
 
     public static WebDriver getDriver(){
         if (driver==null) {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+            switch (ConfigReader.getProperty("browser")){
+                case "Frifox" :
+                    WebDriverManager.firefoxdriver().setup();
+                    driver = new FirefoxDriver();
+                    break;
+                case "chrome" :
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver();
+                    break;
+                case "edge" :
+                    WebDriverManager.edgedriver().setup();
+                    driver = new FirefoxDriver();
+                    break;
+
+                default:WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver();
+
+            }
+
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         }
