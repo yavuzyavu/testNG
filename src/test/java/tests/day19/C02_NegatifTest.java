@@ -25,6 +25,6 @@ public class C02_NegatifTest {
         actions.sendKeys(Keys.TAB).sendKeys(ConfigReader.getProperty("hcmWrongPass"))
                 .sendKeys(Keys.ENTER).perform();
 //                Degerleri girildiginde sayfaya girilemedigini test et
-        Assert.assertTrue(hmcPage.girisYapilmadi.isDisplayed());
+        Assert.assertTrue(hmcPage.girisYapilamadi.isDisplayed());
     }
 }
